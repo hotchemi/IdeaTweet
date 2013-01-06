@@ -32,12 +32,14 @@ public class IdeaTweetAction extends AnAction {
     final Project project = event.getData(PlatformDataKeys.PROJECT);
     String tweet = Messages.showInputDialog(project, "What's happening?", "IdeaTweet", IconLoader.findIcon("/twitter.png"));
     if (tweet != null && tweet.length() == 0) {
-      Messages.showErrorDialog(project, "You must enter at least one letter!!", "Can't Tweet");
+      Messages.showErrorDialog(project, "You must enter at least one letter!", "Can't Tweet");
+      return;
+    } else if (tweet != null && tweet.length() > 140) {
+      Messages.showErrorDialog(project, "Over 140 letter!", "Can't Tweet");
       return;
     }
     try {
       doTweet(project, tweet);
-      Messages.showMessageDialog(project, "Tweet Success!!", "IdeaTweet", Messages.getInformationIcon());
     } catch (Exception e) {
       e.printStackTrace();
       Messages.showErrorDialog(project, "Try again later.", "Can't Tweet");
@@ -50,6 +52,7 @@ public class IdeaTweetAction extends AnAction {
       Messages.showErrorDialog(project, "Failed to authorize with twitter", "Can't Tweet");
     } else {
       twitter.updateStatus(tweet);
+      Messages.showMessageDialog(project, "Tweet Success!!", "IdeaTweet", Messages.getInformationIcon());
     }
   }
 

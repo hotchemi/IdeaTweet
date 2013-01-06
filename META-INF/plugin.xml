@@ -3,20 +3,18 @@
   <name>IdeaTweet</name>
   <version>1.0</version>
   <vendor email="hot.chemistry21@gmail.com" url="https://github.com/hotchemi/IdeaTweet">Shintaro Katafuchi</vendor>
+  <idea-version since-build="107.105"/>
+  <depends>com.intellij.modules.lang</depends>
 
   <description><![CDATA[
       Simple tweet plugin.
       ]]>
   </description>
 
-  <idea-version since-build="107.105"/>
-
-  <depends>com.intellij.modules.lang</depends>
-
   <actions>
     <action id="com.github.hotchemi.IdeaTweetAction" class="com.github.hotchemi.IdeaTweetAction" text="Tweet">
       <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl P" />
+      <keyboard-shortcut keymap="$default" first-keystroke="shift meta P" second-keystroke="shift ctrl P"/>
     </action>
   </actions>
 
